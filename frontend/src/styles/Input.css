@@ -1,0 +1,68 @@
+.InputText input{
+    border-radius: 0px;
+    border: thin solid #5da8be;
+    width: 70%;
+    height: 5vh;
+    max-width: 600px;
+    margin: 5px;
+}
+.InputText input::placeholder{
+    color: #5da8be;
+}
+.InputSelect select{
+    border-radius: 0px;
+    border: thin solid #5da8be;
+    width: 70%;
+    height: 5vh;
+    max-width: 600px;
+    margin: 5px;
+}
+.InputSelect select{
+    color: #5da8be;
+    margin-top: 10px;
+}
+.InputSelect{
+    padding-top: 5px;
+}
+.InputSelect label{
+    color: #00516a;
+}
+
+.InputButton{
+    text-align: center;
+    margin-top: 20px;
+}
+.InputButton input{
+    border-radius: 10px;
+    border: thin solid #5da8be;
+    background-color: white;
+    color: #5da8be;
+    width: 20%;
+    height: 5vh;
+    max-width: 300px;
+    margin: 10px auto 10px auto;
+}
+.InputButton input:hover{
+    background-color: #5da8be;
+    color: white;
+}
+
+.InputNumber{
+    margin-top: 10px;
+    color: #00516a;
+}
+.InputNumber .Selector{
+    display: flex;
+    width: 80%;
+    max-width: 700px;
+    margin: auto;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+.InputNumber .Selector input{
+    background-color: #073544;
+    color: white;
+    border: none;
+    width: 15%;
+}

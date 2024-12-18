@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* ---------------- Navbar and burger menu ------------------ */
+nav {
+    width: 100%;
+    height: 5em;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    justify-items: center;
+    padding: 1em;
+    position: relative; /* Crea un contexto para el posicionamiento absoluto */
+
+}
+.HeaderImg{
+    position: absolute; /* Saca el elemento del flujo de Flexbox */
+    right: 0; /* Alineado a la derecha */
+    top: 50%; /* Centrado verticalmente */
+    transform: translateY(-50%); /* Ajuste fino al centro */
+    width: 30%; /* Tamaño deseado */
+    height: auto;
+    z-index: -10000;
+}
+.HeaderTitle{
+    flex: 1;
+    text-align: center;
+    font-family: 'Lovely';
+    font-size: 30px;
+    padding: 10px;
+    margin-top: 10vh;
+    z-index: -1000;
+}
+.HeaderTitle *{
+    margin: 0;
+    padding: 0;
+
+}
+.burger-menu {
+    flex: 1;
+    height: 50%;
+    width: 2.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.burger-bar {
+    width: 2em;
+    height: 0.25em;
+    background-color: #051d40;
+    border-radius: 0.5em;
+}
+
+.menu {
+    width: 50%;
+    background-color: rgba(255, 255, 255, 0.914);
+    position: absolute;
+    top: 4em;
+    left: 0;
+    z-index: -1;
+    text-align: center;
+    color: white;
+    z-index: 1000;
+}
+.menu ul{
+    list-style: none;
+    margin-left:0;
+    padding: 0;
+    border: 0.5px solid #b1d4e07d;
+    background-color: #ededed08;
+}
+.menu ul li{
+    color: #000000;
+    font-size: 1.25em;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: start;
+}
+
+/* ------------- sliding menu ------------------ */
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: inherit;
+}
+
+
+
+

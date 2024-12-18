@@ -1,0 +1,18 @@
+.DividedSection{
+    display: flex;
+    height: 200px;
+    gap: 20px;
+    align-items: center;
+}
+.DividedSection img{
+    width: 150px;
+    height: 150px;
+    align-content: center;
+
+}
+.DividedSection p{
+    flex: 1;
+    font-size: 5vw;
+    color: rgb(84, 84, 86);
+    align-content: center;
+}

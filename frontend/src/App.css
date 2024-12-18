@@ -1,0 +1,70 @@
+body{
+  font-family: 'StMarie';
+}
+.App{
+  position: relative;
+}
+
+.DatosHome{
+  font-size: 10px;
+  text-align: center;
+  color: #989fa1;
+  width: 90%;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 10px;
+}
+.Rsvp1{
+  text-align: center;
+  margin-top: 20px;
+}
+.ReservaAdicional{
+  margin: auto;
+  text-align: center;
+  margin: 30px auto 0 auto;
+}
+.ImageSplitter{
+  display: flex;
+  flex-flow: wrap;
+  width: 100%;
+  gap: 2px;
+  justify-content: center;
+  margin: 20px auto 20px auto;
+}
+.ImageSplitter img{
+  width: 45%;
+}
+
+.DatosHome .InputButton{
+  margin-top: 10px;
+}
+.DatosHome .InputText{
+  margin-top: 20px;
+}
+
+.Footer{
+  display: flex;
+  justify-content: center;
+  margin: 50px 0 20px 0;
+  align-items: center;
+  gap: 5%;
+}
+.Footer img{
+  max-width: 30%;
+}
+.Footer h1{
+  font-size: 3vw;
+}
+@font-face {
+  font-family: 'StMarie';
+  src: url('./resources/stmarie.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lovely';
+  src: url('./resources/ttlovelies.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
