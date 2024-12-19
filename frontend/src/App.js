@@ -109,7 +109,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <img style={{ marginTop: '60px', width: '100%', maxWidth: '800px' }} src={portada} alt="Portada" />
+      <img id="portada" src={portada} alt="Portada" />
       <div className='DatosHome'>
         <h1>Sábado 15 de marzo</h1>
         <h1>2025</h1>
@@ -119,19 +119,19 @@ function App() {
 
       <CountdownTimer targetDate={'2025-03-15T00:00:00-03:00'} />
 
-      <div className='DatosHome' style={{ marginTop: '20px' }}>
-        <h2 style={{ marginTop: '20px', color: '#989fa1' }}>Cumplo 15 años!</h2>
+      <div className='DatosHome'>
+        <h2 style={{ marginTop: '30px', color: '#989fa1' }}>Cumplo 15 años!</h2>
         <h2 style={{ color: '#989fa1' }}>Y me encantaría que formaras</h2>
         <h2 style={{ color: '#989fa1' }}>parte de mi noche soñada</h2>
       </div>
 
-      <div style={{ textAlign: 'center' }}>
+      <div style={{ textAlign: 'center' }} id="vestimenta">
         <img style={{ margin: 'auto', marginTop: '40px', width: '80%', maxWidth: '600px' }} src={vestimenta} alt="Vestimenta" />
         <h1 style={{ marginTop: '10px', color: '#9acad8' }}>FORMAL</h1>
       </div>
 
-      <div className='DatosHome'>
-        <h1 style={{ marginTop: '40px', color: '#989fa1' }}>Ingresa tus datos para confirmar asistencia</h1>
+      <div className='DatosHome' id="confirmar-asistencia">
+        <h1 style={{ marginTop: '7vh', color: '#989fa1' }}>Ingresa tus datos para confirmar asistencia</h1>
         <br />
         <h2 style={{ color: '#989fa1' }}>En caso de confirmar más de una persona se aclara en el siguiente paso</h2>
       </div>
@@ -187,9 +187,9 @@ function App() {
 
       <InputButton value="Confirmar" onClick={handleConfirmar} />
 
-      <div className='DatosHome' style={{ marginTop: '20px' }}>
+      <div className='DatosHome' id="fotos">
         <h1 style={{ marginTop: '20px', color: '#989fa1' }}>Fotos</h1>
-        <img style={{ marginTop: '20px', width: '100%', maxWidth: '800px' }} src={portada} alt="Portada" />
+        <img style={{ marginTop: '20px', width: '100%', maxWidth: '1000px' }} src={portada} alt="Portada" />
         
         <h1 style={{ marginTop: '20px', color: '#989fa1' }}>Exteriores</h1>
         <div className="ImageSplitter">
@@ -208,7 +208,7 @@ function App() {
         </div>
       </div>
 
-      <div className='DatosHome' style={{ marginTop: '20px' }}>
+      <div className='DatosHome' id="sugerencia-canciones">
         <h1 style={{ marginTop: '20px', color: '#989fa1' }}>Queremos que sea una noche super divertida</h1>
         <h2 style={{ marginTop: '5px', color: '#989fa1' }}>Dinos que canción no puede faltar</h2>
         <InputText
@@ -218,26 +218,26 @@ function App() {
           />
         <InputButton value="Enviar" onClick={enviarCancion} />
       </div>
-      <div className='DatosHome' style={{ marginTop: '20px' }}>
+      <div className='DatosHome' id="reserva-alojamiento">
         <h1 style={{ marginTop: '20px', color: '#989fa1' }}>Reserva tu alojamiento</h1>
       </div>
 
-      <div className='DatosHome' style={{ marginTop: '20px', textAlign: 'unset' }}>
+      <div className='DatosHome' style={{ marginTop: '20px', textAlign: 'center' }}>
         <h2 style={{ margin: '20px 0 0px 0', color: '#989fa1'}}>Opción 1</h2>
         <DividedSection image={alojamiento} text={"Información del alojamiento, precios, contacto"} />
       </div>
-      <div className='DatosHome' style={{ marginTop: '20px', textAlign: 'unset' }}>
+      <div className='DatosHome' style={{ marginTop: '20px', textAlign: 'center' }}>
         <h2 style={{ margin: '20px 0 0px 0', color: '#989fa1'}}>Opción 2</h2>
         <DividedSection image={alojamiento} text={"Información del alojamiento, precios, contacto"} />
       </div>
-      <div className='DatosHome' style={{ marginTop: '20px', textAlign: 'unset' }}>
+      <div className='DatosHome' style={{ marginTop: '20px', textAlign: 'center' }}>
         <h2 style={{ margin: '20px 0 0px 0', color: '#989fa1'}}>Opción 3</h2>
         <DividedSection image={alojamiento} text={"Información del alojamiento, precios, contacto"} />
       </div>
 
 
 
-      <div className='DatosHome' style={{ marginTop: '20px' }}>
+      <div className='DatosHome' id="regalos">
         <h1 style={{ marginTop: '20px', color: '#989fa1' }}>Regalo</h1>
         <h2 style={{ margin: '20px 0 0px 0', color: '#989fa1'}}>Número de cuenta</h2>
         <img style={{ marginTop: '20px', width: '100%', maxWidth: '800px' }} src={regalo} alt="Regalo" />

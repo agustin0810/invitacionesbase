@@ -1,7 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 
+const useMediaQuery = (query) => {
+  const [matches, setMatches] = useState(window.matchMedia(query).matches);
+
+  useEffect(() => {
+    const mediaQueryList = window.matchMedia(query);
+    const listener = (event) => setMatches(event.matches);
+
+    mediaQueryList.addEventListener("change", listener);
+    return () => mediaQueryList.removeEventListener("change", listener);
+  }, [query]);
+
+  return matches;
+};
+
 const CountdownTimer = ({ targetDate }) => {
+  const isLargeScreen = useMediaQuery("(min-width: 768px)");
+
   const calculateRemainingTime = () => {
     const now = new Date();
     const target = new Date(targetDate);
@@ -24,6 +40,8 @@ const CountdownTimer = ({ targetDate }) => {
   const hours = Math.floor((remainingTime % (3600 * 24)) / 3600);
   const minutes = Math.floor((remainingTime % 3600) / 60);
 
+  const circleSize = isLargeScreen ? 200 : 100; // Ajusta el tamaño de los círculos
+
   return (
     <div
       style={{
@@ -31,7 +49,7 @@ const CountdownTimer = ({ targetDate }) => {
         justifyContent: "center",
         alignItems: "center",
         gap: "1.5em",
-        marginTop: "20px",
+        marginTop: "30px",
         flexWrap: "wrap", // Adaptable en pantallas pequeñas
         maxWidth: "100%",
       }}
@@ -48,10 +66,10 @@ const CountdownTimer = ({ targetDate }) => {
       >
         <CountdownCircleTimer
           isPlaying
-          duration={365} // Máximo de 365 días (ajustable)
+          duration={365}
           initialRemainingTime={days}
           colors={["#cbe3eb"]}
-          size={100}
+          size={circleSize}
           strokeWidth={6}
           trailColor="#cbe3eb"
         >
@@ -75,7 +93,7 @@ const CountdownTimer = ({ targetDate }) => {
           duration={24}
           initialRemainingTime={hours}
           colors={["#cbe3eb"]}
-          size={100}
+          size={circleSize}
           strokeWidth={6}
           trailColor="#cbe3eb"
         >
@@ -99,7 +117,7 @@ const CountdownTimer = ({ targetDate }) => {
           duration={60}
           initialRemainingTime={minutes}
           colors={["#cbe3eb"]}
-          size={100}
+          size={circleSize}
           strokeWidth={6}
           trailColor="#cbe3eb"
         >

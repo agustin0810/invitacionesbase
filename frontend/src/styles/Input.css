@@ -3,7 +3,7 @@
     border: thin solid #5da8be;
     width: 70%;
     height: 5vh;
-    max-width: 600px;
+    max-width: 1000px;
     margin: 5px;
 }
 .InputText input::placeholder{
@@ -14,7 +14,7 @@
     border: thin solid #5da8be;
     width: 70%;
     height: 5vh;
-    max-width: 600px;
+    max-width: 1000px;
     margin: 5px;
 }
 .InputSelect select{
@@ -37,7 +37,7 @@
     border: thin solid #5da8be;
     background-color: white;
     color: #5da8be;
-    width: 20%;
+    width: 25%;
     height: 5vh;
     max-width: 300px;
     margin: 10px auto 10px auto;
@@ -66,3 +66,13 @@
     border: none;
     width: 15%;
 }
+
+@media(min-width: 2500px){
+    .InputText input{
+        border-radius: 0px;
+        border: thin solid #5da8be;
+        width: 100%;
+        height: 5vh;
+        margin: 5px;
+    }
+  }

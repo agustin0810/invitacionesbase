@@ -3,6 +3,13 @@ body{
 }
 .App{
   position: relative;
+  text-align: center;
+}
+
+.App #portada{
+  width: 100%;
+  max-width: 800px;
+  margin: 60px auto 0px auto;
 }
 
 .DatosHome{
@@ -10,9 +17,9 @@ body{
   text-align: center;
   color: #989fa1;
   width: 90%;
-  max-width: 600px;
+  max-width: 1000px;
   margin: auto;
-  margin-top: 10px;
+  margin-top: 4vh;
 }
 .Rsvp1{
   text-align: center;
@@ -45,7 +52,7 @@ body{
 .Footer{
   display: flex;
   justify-content: center;
-  margin: 50px 0 20px 0;
+  margin: 7vh 0 7vh 0;
   align-items: center;
   gap: 5%;
 }
@@ -67,4 +74,71 @@ body{
   src: url('./resources/ttlovelies.ttf');
   font-weight: normal;
   font-style: normal;
+}
+
+@media (min-width: 768px) {
+  .DatosHome{
+    margin-top: 40px;
+  }
+  .DatosHome h1{
+    font-size: 30px;
+  }
+  .DatosHome h2{
+    font-size: 20px;
+  }
+  .DatosHome .DividedSection p{
+    font-size: 30px;
+  }
+  .App #portada{
+    margin-top: 100px;
+  }
+}
+@media(min-width: 1024px){
+  .DatosHome{
+    margin-top: 9vh;
+    margin-bottom: 5vh;
+  }
+  .DatosHome h1{
+    font-size: 40px;
+  }
+  .DatosHome h2{
+    font-size: 30px;
+  }
+  .DatosHome .DividedSection p{
+    font-size: 40px;
+  }
+  .Footer{
+    margin-top: 10vh;
+  }
+  .Footer img{
+    max-width: 15%;
+  }
+  .Footer h1{
+    font-size: 1.5vw;
+  }
+}
+
+@media(min-width: 2500px){
+  .DatosHome{
+    margin-top: 9vh;
+    margin-bottom: 5vh;
+  }
+  .DatosHome h1{
+    font-size: 70px;
+  }
+  .DatosHome h2{
+    font-size: 50px;
+  }
+  .DatosHome .DividedSection p{
+    font-size: 60px;
+  }
+  .Footer{
+    margin-top: 10vh;
+  }
+  .Footer img{
+    max-width: 15%;
+  }
+  .Footer h1{
+    font-size: 1.5vw;
+  }
 }

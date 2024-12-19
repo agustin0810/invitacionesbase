@@ -96,3 +96,26 @@ nav {
 
 
 
+
+@media (min-width: 800px){
+    .HeaderImg{
+      width: 10%;
+      right: 13.5%;
+      z-index: 1000;
+      top: 75%;
+    }
+  }
+
+@media (min-width: 1024px){
+    .HeaderTitle{
+        font-size: 40px;
+    }
+    nav{margin: 40px auto 20px auto;}
+}
+
+@media (min-width: 2500px){
+    .HeaderTitle{
+        font-size: 60px;
+    }
+    nav{margin: 40px auto 80px auto;}
+}
