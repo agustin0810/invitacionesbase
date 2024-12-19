@@ -61,7 +61,7 @@ function App() {
     ];
 
     try {
-      const response = await fetch('http://localhost:5000/reservas', {
+      const response = await fetch('http://44.202.99.189:5000/reservas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -86,7 +86,7 @@ function App() {
   const enviarCancion = async () =>{
     try {
       console.log(cancion)
-      const response = await fetch('http://localhost:5000/canciones', {
+      const response = await fetch('http://44.202.99.189:5000/canciones', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -101,6 +101,7 @@ function App() {
         alert(`Error al enviar la canción: ${error.message}`);
       }
     } catch (error) {
+      console.log(error)
       console.error('Error al enviar la canción:', error);
       alert('Ocurrió un error al enviar la canción');
     }
