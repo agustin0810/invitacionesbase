@@ -49,9 +49,10 @@ const CountdownTimer = ({ targetDate }) => {
         justifyContent: "center",
         alignItems: "center",
         gap: "1.5em",
-        marginTop: "30px",
+        paddingTop: "30px",
         flexWrap: "wrap", // Adaptable en pantallas pequeñas
         maxWidth: "100%",
+        backgroundColor: "white",
       }}
     >
       {/* Círculo para Días */}

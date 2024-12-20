@@ -4,22 +4,25 @@ body{
 .App{
   position: relative;
   text-align: center;
+  background-color: transparent;
 }
 
 .App #portada{
   width: 100%;
   max-width: 800px;
-  margin: 60px auto 0px auto;
+  margin: 0px auto 0px auto;
 }
 
 .DatosHome{
   font-size: 10px;
   text-align: center;
   color: #989fa1;
-  width: 90%;
-  max-width: 1000px;
+  width: 100%;
+  padding: auto;
+  padding-top: 4vh;
   margin: auto;
-  margin-top: 4vh;
+  margin-top: 3vh;
+  
 }
 .Rsvp1{
   text-align: center;
@@ -34,12 +37,12 @@ body{
   display: flex;
   flex-flow: wrap;
   width: 100%;
-  gap: 2px;
+  gap: 0px;
   justify-content: center;
-  margin: 20px auto 20px auto;
+  margin: 20px 0 20px 0;
 }
 .ImageSplitter img{
-  width: 45%;
+  width: 30%;
 }
 
 .DatosHome .InputButton{
@@ -89,9 +92,6 @@ body{
   .DatosHome .DividedSection p{
     font-size: 30px;
   }
-  .App #portada{
-    margin-top: 100px;
-  }
 }
 @media(min-width: 1024px){
   .DatosHome{
@@ -115,6 +115,9 @@ body{
   }
   .Footer h1{
     font-size: 1.5vw;
+  }
+  .App #portada{
+    margin: 20px auto 0px auto;
   }
 }
 
