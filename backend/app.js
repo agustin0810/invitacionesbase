@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const mysql = require('mysql2');
+const https = require('https');
+const fs = require('fs');
 const PORT = 5000;
 
 // Configuración de conexión a la base de datos
@@ -95,7 +97,14 @@ app.post('/canciones', (req, res) => {
         });
     });
 });
-// Iniciar el servidor
-app.listen(PORT, () => {
-    console.log(`Servidor ejecutándose en http://localhost:${PORT}`);
+
+// Configuración HTTPS
+const privateKey = fs.readFileSync('private.pem', 'utf8');
+const certificate = fs.readFileSync('cert.pem', 'utf8');
+
+const credentials = { key: privateKey, cert: certificate };
+
+// Iniciar el servidor HTTPS
+https.createServer(credentials, app).listen(PORT, () => {
+    console.log(`Servidor HTTPS ejecutándose en https://localhost:${PORT}`);
 });
