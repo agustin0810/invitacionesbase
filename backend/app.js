@@ -98,6 +98,70 @@ app.post('/canciones', (req, res) => {
     });
 });
 
+// Endpoint para obtener la lista de canciones
+app.get('/canciones', (req, res) => {
+    const query = 'SELECT * FROM canciones';
+
+    db.getConnection((err, connection) => {
+        if (err) {
+            console.error('Error al obtener la conexión:', err);
+            return res.status(500).json({
+                message: 'Error al conectar con la base de datos.',
+                error: err
+            });
+        }
+
+        connection.query(query, (err, results) => {
+            connection.release(); // Libera la conexión al pool
+
+            if (err) {
+                console.error('Error al obtener las canciones:', err);
+                return res.status(500).json({
+                    message: 'Error al obtener las canciones.',
+                    error: err
+                });
+            }
+
+            res.status(200).json({
+                message: 'Canciones obtenidas correctamente.',
+                canciones: results,
+            });
+        });
+    });
+});
+
+// Endpoint para obtener la lista de reservas
+app.get('/reservas', (req, res) => {
+    const query = 'SELECT * FROM reservas';
+
+    db.getConnection((err, connection) => {
+        if (err) {
+            console.error('Error al obtener la conexión:', err);
+            return res.status(500).json({
+                message: 'Error al conectar con la base de datos.',
+                error: err
+            });
+        }
+
+        connection.query(query, (err, results) => {
+            connection.release(); // Libera la conexión al pool
+
+            if (err) {
+                console.error('Error al obtener las reservas:', err);
+                return res.status(500).json({
+                    message: 'Error al obtener las reservas.',
+                    error: err
+                });
+            }
+
+            res.status(200).json({
+                message: 'Reservas obtenidas correctamente.',
+                reservas: results,
+            });
+        });
+    });
+});
+
 // Configuración HTTPS
 const privateKey = fs.readFileSync('private.pem', 'utf8');
 const certificate = fs.readFileSync('cert.pem', 'utf8');
@@ -105,6 +169,11 @@ const certificate = fs.readFileSync('cert.pem', 'utf8');
 const credentials = { key: privateKey, cert: certificate };
 
 // Iniciar el servidor HTTPS
-https.createServer(credentials, app).listen(PORT, () => {
-    console.log(`Servidor HTTPS ejecutándose en https://localhost:${PORT}`);
+// https.createServer(credentials, app).listen(PORT, () => {
+//     console.log(`Servidor HTTPS ejecutándose en https://localhost:${PORT}`);
+// });
+
+// INICIAR HTTP (DEV)
+app.listen(PORT, () => {
+    console.log(`Servidor HTTP ejecutándose en http://localhost:${PORT}`);
 });
