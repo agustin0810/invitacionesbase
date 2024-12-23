@@ -1,24 +1,24 @@
 .InputText input{
     border-radius: 0px;
-    border: thin solid #5da8be;
+    border: thin solid #2e266d;
     width: 70%;
     height: 5vh;
     max-width: 1000px;
     margin: 5px;
 }
 .InputText input::placeholder{
-    color: #5da8be;
+    color: #2e266d;
 }
 .InputSelect select{
     border-radius: 0px;
-    border: thin solid #5da8be;
+    border: thin solid #2e266d;
     width: 70%;
     height: 5vh;
     max-width: 1000px;
     margin: 5px;
 }
 .InputSelect select{
-    color: #5da8be;
+    color: #2e266d;
     margin-top: 10px;
 }
 .InputSelect{
@@ -34,16 +34,16 @@
 }
 .InputButton input{
     border-radius: 10px;
-    border: thin solid #5da8be;
+    border: thin solid #2e266d;
     background-color: white;
-    color: #5da8be;
+    color: #2e266d;
     width: 25%;
     height: 5vh;
     max-width: 300px;
     margin: 10px auto 10px auto;
 }
 .InputButton input:hover{
-    background-color: #5da8be;
+    background-color: #2e266d;
     color: white;
 }
 
@@ -61,7 +61,7 @@
     margin-top: 20px;
 }
 .InputNumber .Selector input{
-    background-color: #073544;
+    background-color: #2e266d;
     color: white;
     border: none;
     width: 15%;

@@ -49,9 +49,10 @@ const CountdownTimer = ({ targetDate }) => {
         justifyContent: "center",
         alignItems: "center",
         gap: "1.5em",
-        marginTop: "30px",
+        paddingTop: "30px",
         flexWrap: "wrap", // Adaptable en pantallas pequeñas
         maxWidth: "100%",
+        backgroundColor: "white",
       }}
     >
       {/* Círculo para Días */}
@@ -73,9 +74,9 @@ const CountdownTimer = ({ targetDate }) => {
           strokeWidth={6}
           trailColor="#cbe3eb"
         >
-          {() => <div style={{ fontSize: "16px" }}>{days}d</div>}
+          {() => <div style={{ fontSize: isLargeScreen ? '45px' : '16px' }}>{days}</div>}
         </CountdownCircleTimer>
-        <div style={{ fontSize: "12px", marginTop: "5px" }}>Días</div>
+        <div style={{ fontSize: isLargeScreen ? '26px' : '6px', marginTop: "5px" }}>Días</div>
       </div>
 
       {/* Círculo para Horas */}
@@ -97,9 +98,9 @@ const CountdownTimer = ({ targetDate }) => {
           strokeWidth={6}
           trailColor="#cbe3eb"
         >
-          {() => <div style={{ fontSize: "16px" }}>{hours}h</div>}
+          {() => <div style={{  fontSize: isLargeScreen ? '45px' : '16px' }}>{hours}</div>}
         </CountdownCircleTimer>
-        <div style={{ fontSize: "12px", marginTop: "5px" }}>Horas</div>
+        <div style={{  fontSize: isLargeScreen ? '26px' : '6px' , marginTop: "5px" }}>Horas</div>
       </div>
 
       {/* Círculo para Minutos */}
@@ -121,9 +122,9 @@ const CountdownTimer = ({ targetDate }) => {
           strokeWidth={6}
           trailColor="#cbe3eb"
         >
-          {() => <div style={{ fontSize: "16px" }}>{minutes}m</div>}
+          {() => <div style={{  fontSize: isLargeScreen ? '45px' : '16px'  }}>{minutes}</div>}
         </CountdownCircleTimer>
-        <div style={{ fontSize: "12px", marginTop: "5px" }}>Minutos</div>
+        <div style={{ fontSize: isLargeScreen ? '26px' : '6px', marginTop: "5px" }}>Minutos</div>
       </div>
     </div>
   );

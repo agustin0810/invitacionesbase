@@ -6,13 +6,13 @@
 /* ---------------- Navbar and burger menu ------------------ */
 nav {
     width: 100%;
-    height: 5em;
-    background-color: transparent;
+    height: 10em;
+    background-color: #2e266d;
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: start;
     justify-items: center;
-    padding: 1em;
+    padding: 2em;
     position: relative; /* Crea un contexto para el posicionamiento absoluto */
 
 }
@@ -23,16 +23,17 @@ nav {
     transform: translateY(-50%); /* Ajuste fino al centro */
     width: 30%; /* Tamaño deseado */
     height: auto;
-    z-index: -10000;
+    z-index: 10000;
 }
 .HeaderTitle{
     flex: 1;
     text-align: center;
     font-family: 'Lovely';
-    font-size: 30px;
+    font-size: 7vw;
     padding: 10px;
-    margin-top: 10vh;
-    z-index: -1000;
+    margin-top: 3vh;
+    z-index: 1000;
+    color: white
 }
 .HeaderTitle *{
     margin: 0;
@@ -41,7 +42,7 @@ nav {
 }
 .burger-menu {
     flex: 1;
-    height: 50%;
+    height: 20%;
     width: 2.5em;
     display: flex;
     flex-direction: column;
@@ -53,7 +54,7 @@ nav {
 .burger-bar {
     width: 2em;
     height: 0.25em;
-    background-color: #051d40;
+    background-color: #ffffff;
     border-radius: 0.5em;
 }
 
@@ -95,7 +96,23 @@ nav {
 
 
 
-
+@media(min-width: 768px){
+    nav{
+        height: 20em;
+        align-items: center;
+    }
+    .menu{
+        top: 13em;
+    }
+    .burger-menu{
+        height: 10%;
+    }
+    .HeaderImg{
+        width: 16%;
+        right: 13.5%;
+        z-index: 1000;
+      }
+}
 
 @media (min-width: 800px){
     .HeaderImg{
@@ -108,9 +125,21 @@ nav {
 
 @media (min-width: 1024px){
     .HeaderTitle{
-        font-size: 40px;
+        font-size: 60px;
     }
-    nav{margin: 40px auto 20px auto;}
+    nav{margin: 0 auto 20px auto;}
+    .menu{
+        top: 13em;
+    }
+    .burger-menu{
+        height: 12%;
+    }
+    .HeaderImg{
+        width: 12%;
+        right: 13.5%;
+        z-index: 1000;
+        top: 50%;
+      }
 }
 
 @media (min-width: 2500px){

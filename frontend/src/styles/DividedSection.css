@@ -1,7 +1,8 @@
 .DividedSection {
-    width: 100%;
+    width: 80%;
     display: flex;
-    height: 200px;
+    flex-direction: column; /* Asegura que los elementos estén en fila */
+    height: auto; /* Ajusta la altura de acuerdo al contenido */
     gap: 20px;
     align-items: center; /* Centra verticalmente */
     justify-content: center; /* Centra horizontalmente */
@@ -11,19 +12,84 @@
 .DividedSection img {
     width: 150px;
     height: 150px;
+    object-fit: cover; /* Asegura que la imagen se recorte si es necesario */
     align-self: center; /* Asegura que las imágenes estén centradas */
 }
 
-.DividedSection p {
-    flex: 1;
-    font-size: 5vw;
-    color: rgb(84, 84, 86);
-    align-self: center; /* Asegura que el texto esté centrado verticalmente */
+.DividedSection .ContenedorTexto {
+    display: flex;
+    flex-direction: column; /* Organiza el texto en columna */
+    justify-content: center; /* Centra el contenido de texto */
+    text-align: start;
+    width: 50%;
 }
 
-@media(min-width: 768px){
-    .DividedSection img{
-        width: 220px;
-        height: 220px;
+.DividedSection .Titulo {
+    font-size: 1rem; /* Usa unidades relativas */
+    margin-bottom: 1vh;
+    text-align: center;
+}
+
+.DividedSection .Contenido {
+    font-size: 1rem; /* Usa unidades relativas */
+    color: rgb(84, 84, 86);
+    margin-bottom: 1vh;
+    text-align: center;
+}
+
+.DividedSection .Enlace {
+    font-size: 1rem; /* Usa unidades relativas */
+    font-weight: bold;
+    color: #007bff; /* Cambia el color del enlace */
+    display: block;
+    margin-top: 1vh;
+    text-decoration: none; /* Elimina el subrayado */
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+@media (min-width: 768px) {
+    .DividedSection{
+        flex-direction: row;
+    }
+    .DatosHome .DividedSection p {
+        font-size: 1rem;
+    }
+    .DividedSection .Titulo{
+        text-align: start;
+    }
+    .DividedSection .Contenido{
+        text-align: start;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    
+    .DividedSection img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .DividedSection{
+        flex-direction: row;
+        width: 1000px;
+        height: 210px;
+        justify-content: center;
+    }
+    .DatosHome .DividedSection p {
+        font-size: 1.5rem;
+    }
+    .DividedSection .Titulo{
+        text-align: start;
+        font-size: 1.5rem;
+    }
+    .DividedSection .Contenido{
+        text-align: start;
+        font-size: 1.5rem;
+    }
+    .DividedSection .ContenedorTexto{
+        text-align: start;
+        align-items: start;
     }
 }

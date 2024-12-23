@@ -1,6 +1,7 @@
 import './App.css';
+import React from 'react';
 import Navbar from './components/Navbar';
-import portada from './images/portada.png';
+import portada from './images/portada.jpg';
 import CountdownTimer from './components/CountdownTimer';
 import vestimenta from './images/vestimenta.png';
 import InputText from './components/InputText';
@@ -11,7 +12,20 @@ import DividedSection from './components/DividedSection';
 import alojamiento from './images/alojamiento.avif'
 import regalo from './images/regalo.png'
 import logo from './images/logo.png';
+import foto1 from './images/foto1.jpg'
+import exterior1 from './images/exterior1.jpg';
+import exterior2  from './images/exterior2.jpg';
+import exterior3 from './images/exterior3.jpg';
+import hotelroyal from './images/hotelroyal.jpg';
+import laescondida from './images/laescondida.jpg';
+import marinasdelriachuelo from './images/marinasdelriachuelo.jpg';
+import casadelsol from './images/casadelsol.jpg';
+
+import MapaConEnlace from './components/MapaConEnlace';
+import fiesta from './images/fiesta.png'
+
 import { useState } from 'react';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 function App() {
   const [restriccionVisible, setRestriccionVisible] = useState(false);
@@ -22,7 +36,6 @@ function App() {
   const [detallesRestriccion, setDetallesRestriccion] = useState('');
   const [reservasAdicionales, setReservasAdicionales] = useState([]);
   const [cancion, setCancion] = useState('');
-
   const changeRestriccion = (value) => {
     setRestriccion(value);
     setRestriccionVisible(value === 'Si');
@@ -61,7 +74,7 @@ function App() {
     ];
 
     try {
-      const response = await fetch('http://44.202.99.189:5000/reservas', {
+      const response = await fetch(API_BASE_URL+'/reservas', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -86,7 +99,7 @@ function App() {
   const enviarCancion = async () =>{
     try {
       console.log(cancion)
-      const response = await fetch('http://44.202.99.189:5000/canciones', {
+      const response = await fetch(API_BASE_URL+'/canciones', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -101,7 +114,6 @@ function App() {
         alert(`Error al enviar la canción: ${error.message}`);
       }
     } catch (error) {
-      console.log(error)
       console.error('Error al enviar la canción:', error);
       alert('Ocurrió un error al enviar la canción');
     }
@@ -119,16 +131,17 @@ function App() {
       </div>
 
       <CountdownTimer targetDate={'2025-03-15T00:00:00-03:00'} />
+      <MapaConEnlace />
 
-      <div className='DatosHome'>
-        <h2 style={{ marginTop: '30px', color: '#989fa1' }}>Cumplo 15 años!</h2>
+      <div className='DatosHome' style={{backgroundColor:'#2e266d', paddingTop: '3vh', paddingBottom: '3vh', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+        <h2 style={{  color: '#989fa1' }}>¡Cumplo 15 años!</h2>
         <h2 style={{ color: '#989fa1' }}>Y me encantaría que formaras</h2>
         <h2 style={{ color: '#989fa1' }}>parte de mi noche soñada</h2>
       </div>
 
       <div style={{ textAlign: 'center' }} id="vestimenta">
         <img style={{ margin: 'auto', marginTop: '40px', width: '80%', maxWidth: '600px' }} src={vestimenta} alt="Vestimenta" />
-        <h1 style={{ marginTop: '10px', color: '#9acad8' }}>FORMAL</h1>
+        <h1 style={{ marginTop: '10px', color: '#2e266d' }}>FORMAL</h1>
       </div>
 
       <div className='DatosHome' id="confirmar-asistencia">
@@ -190,26 +203,25 @@ function App() {
 
       <div className='DatosHome' id="fotos">
         <h1 style={{ marginTop: '20px', color: '#989fa1' }}>Fotos</h1>
-        <img style={{ marginTop: '20px', width: '100%', maxWidth: '1000px' }} src={portada} alt="Portada" />
+        <img style={{ marginTop: '20px', width: '100%', maxWidth: '1000px' }} src={foto1} alt="Portada" />
         
         <h1 style={{ marginTop: '20px', color: '#989fa1' }}>Exteriores</h1>
         <div className="ImageSplitter">
-          <img src={portada} alt="Portada" />
-          <img src={portada} alt="Portada" />
-          <img src={portada} alt="Portada" />
-          <img src={portada} alt="Portada" />
+          <img src={exterior1} alt="Exteriores" />
+          <img src={exterior2} alt="Exteriores" />
+          <img src={exterior3} alt="Exteriores" />
         </div>
 
-        <h1 style={{ marginTop: '20px', color: '#989fa1' }}>Fiesta</h1>
+        {/* <h1 style={{ marginTop: '20px', color: '#989fa1' }}>Fiesta</h1>
         <div className="ImageSplitter">
-          <img src={portada} alt="Portada" />
-          <img src={portada} alt="Portada" />
-          <img src={portada} alt="Portada" />
-          <img src={portada} alt="Portada" />
-        </div>
+          <img src={fiesta} alt="Fiesta" />
+          <img src={fiesta} alt="Fiesta" />
+          <img src={fiesta} alt="Fiesta" />
+          <img src={fiesta} alt="Fiesta" />
+        </div> */}
       </div>
 
-      <div className='DatosHome' id="sugerencia-canciones">
+      <div className='DatosHome' id="sugerencia-canciones" style={{backgroundColor: '#2e266d', paddingBottom: '4vh', marginTop: '7vh'}}>
         <h1 style={{ marginTop: '20px', color: '#989fa1' }}>Queremos que sea una noche super divertida</h1>
         <h2 style={{ marginTop: '5px', color: '#989fa1' }}>Dinos que canción no puede faltar</h2>
         <InputText
@@ -219,30 +231,92 @@ function App() {
           />
         <InputButton value="Enviar" onClick={enviarCancion} />
       </div>
-      <div className='DatosHome' id="reserva-alojamiento">
-        <h1 style={{ marginTop: '20px', color: '#989fa1' }}>Reserva tu alojamiento</h1>
+      <div className='DatosHome' id="reserva-alojamiento" style={{marginTop: '5vh'}}>
+        <h1 style={{ color: '#989fa1' }}>Reserva tu alojamiento</h1>
       </div>
 
-      <div className='DatosHome' style={{ marginTop: '20px', textAlign: 'center' }}>
-        <h2 style={{ margin: '20px 0 0px 0', color: '#989fa1'}}>Opción 1</h2>
-        <DividedSection image={alojamiento} text={"Información del alojamiento, precios, contacto"} />
+      <div className='DatosHome' style={{ marginTop: '0px', textAlign: 'center' }}>
+        <h2 style={{ margin: '20px 0 3vh 0', color: '#989fa1'}}>Opción 1</h2>
+        <DividedSection 
+            image={marinasdelriachuelo}
+            titulo={"Marinas del Riachuelo" }
+            text={
+              "Habitación doble $2600\n Habitación triple $3000\n Habitación cuadruple $3600\n Duplex 1 $4200\n Duplex 2 $4600"
+                .split('\n')
+                .map((line, index) => (
+                  <React.Fragment key={index}>
+                    {line}
+                    <br />
+                  </React.Fragment>
+                ))
+            }
+            enlace={"https://wa.me/59891084176"}
+          />
       </div>
-      <div className='DatosHome' style={{ marginTop: '20px', textAlign: 'center' }}>
-        <h2 style={{ margin: '20px 0 0px 0', color: '#989fa1'}}>Opción 2</h2>
-        <DividedSection image={alojamiento} text={"Información del alojamiento, precios, contacto"} />
-      </div>
-      <div className='DatosHome' style={{ marginTop: '20px', textAlign: 'center' }}>
-        <h2 style={{ margin: '20px 0 0px 0', color: '#989fa1'}}>Opción 3</h2>
-        <DividedSection image={alojamiento} text={"Información del alojamiento, precios, contacto"} />
-      </div>
+      <div className='DatosHome' style={{ marginTop: '0px', textAlign: 'center' }}>
+        <h2 style={{ margin: '20px 0 3vh 0', color: '#989fa1'}}>Opción 2</h2>
+        <DividedSection 
+            image={laescondida}
+            titulo={"Chacra La escondida" }
+            text={
+              "Habitación doble USD 70 \n Habitación triple USD 95 \n Habitación para 4 personas USD 120 \n Habitación para 5 personas USD 135"
+                .split('\n')
+                .map((line, index) => (
+                  <React.Fragment key={index}>
+                    {line}
+                    <br />
+                  </React.Fragment>
+                ))
+            }
+            enlace={"https://wa.me/59892872298"}
+
+          />      </div>
+      <div className='DatosHome' style={{ marginTop: '0px', textAlign: 'center' }}>
+        <h2 style={{ margin: '20px 0 3vh 0', color: '#989fa1'}}>Opción 3</h2>
+        <DividedSection 
+            image={casadelsol}
+            titulo={"Hotel casa del sol" }
+            text={"Matrimonial Superior USD 90+IVA \n Matrimonial Deluxe USD 130+IVA \n "
+                .split('\n')
+                .map((line, index) => (
+                  <React.Fragment key={index}>
+                    {line}
+                    <br />
+                  </React.Fragment>
+                ))
+            }
+            enlace={"https://wa.me/59892250625"}
+
+          />   
+          </div>
+          <div className='DatosHome' style={{ marginTop: '0px', textAlign: 'center' }}>
+        <h2 style={{ margin: '20px 0 3vh 0', color: '#989fa1'}}>Opción 4</h2>
+        <DividedSection 
+            image={hotelroyal}
+            titulo={"Hotel Royal" }
+            text={"Habitación doble USD 70+IVA"
+                .split('\n')
+                .map((line, index) => (
+                  <React.Fragment key={index}>
+                    {line}
+                    <br />
+                  </React.Fragment>
+                ))
+            }
+            enlace={"https://wa.me/59899670218"}
+
+          />   
+          </div>
 
 
 
-      <div className='DatosHome' id="regalos">
-        <h1 style={{ marginTop: '20px', color: '#989fa1' }}>Regalo</h1>
-        <h2 style={{ margin: '20px 0 0px 0', color: '#989fa1'}}>Número de cuenta</h2>
-        <img style={{ marginTop: '20px', width: '100%', maxWidth: '800px' }} src={regalo} alt="Regalo" />
+      <div className='DatosHome' id="regalos" style={{backgroundColor: '#2e266d', paddingBottom: '20px', marginBottom: '20px'}}>
+        <h1 style={{ color: '#989fa1' }}>Regalo</h1>
+        <h2 style={{ color: '#989fa1' }}>Brou 110024237-00001 $</h2>
+        <h2 style={{ color: '#989fa1' }}>110024237-00002 USD</h2>
+        <h2 style={{ margin: '20px 0 0px 0', color: '#989fa1', backgroundColor: '#2e266d'}}>Sandra Amarillo        </h2>
       </div>
+      <img style={{ marginTop: '10px', width: '100%', maxWidth: '800px' }} src={regalo} alt="Regalo" />
 
       <div className='Footer'>
         <img src={logo} alt='Logo' />
