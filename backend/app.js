@@ -169,11 +169,11 @@ const certificate = fs.readFileSync('cert.pem', 'utf8');
 const credentials = { key: privateKey, cert: certificate };
 
 // Iniciar el servidor HTTPS
-// https.createServer(credentials, app).listen(PORT, () => {
-//     console.log(`Servidor HTTPS ejecutándose en https://localhost:${PORT}`);
-// });
+https.createServer(credentials, app).listen(PORT, () => {
+    console.log(`Servidor HTTPS ejecutándose en https://localhost:${PORT}`);
+});
 
 // INICIAR HTTP (DEV)
-app.listen(PORT, () => {
-    console.log(`Servidor HTTP ejecutándose en http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//     console.log(`Servidor HTTP ejecutándose en http://localhost:${PORT}`);
+// });
