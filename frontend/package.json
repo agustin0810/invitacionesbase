@@ -5,12 +5,14 @@
   "dependencies": {
     "cra-template": "1.2.0",
     "dotenv": "^16.4.7",
+    "jspdf": "^2.5.2",
     "leaflet": "^1.9.4",
     "react": "^19.0.0",
     "react-burger-menu": "^3.1.0",
     "react-countdown-circle-timer": "^3.2.1",
     "react-dom": "^19.0.0",
     "react-leaflet": "^5.0.0",
+    "react-router-dom": "^7.1.0",
     "react-scripts": "5.0.1"
   },
   "scripts": {

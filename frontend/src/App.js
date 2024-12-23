@@ -20,6 +20,9 @@ import hotelroyal from './images/hotelroyal.jpg';
 import laescondida from './images/laescondida.jpg';
 import marinasdelriachuelo from './images/marinasdelriachuelo.jpg';
 import casadelsol from './images/casadelsol.jpg';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './components/Login'; // Importa el componente de login
+import Dashboard from './components/Dashboard';
 
 import MapaConEnlace from './components/MapaConEnlace';
 import fiesta from './images/fiesta.png'
@@ -27,7 +30,19 @@ import fiesta from './images/fiesta.png'
 import { useState } from 'react';
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-function App() {
+
+function App(){
+  return(
+    <Router>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+    </Router>
+  )
+}
+function Home() {
   const [restriccionVisible, setRestriccionVisible] = useState(false);
   const [cantidadReservasAdicionales, setCantidadReservasAdicionales] = useState(0);
   const [nombre, setNombre] = useState('');

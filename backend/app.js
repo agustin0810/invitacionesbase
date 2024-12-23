@@ -27,48 +27,55 @@ app.use(cors());
 // Middleware para parsear JSON
 app.use(express.json());
 
-// Endpoint para recibir las reservas
+// Endpoint para recibir y guardar reservas
 app.post('/reservas', (req, res) => {
     const reservas = req.body;
 
-    // Validar que el cuerpo de la solicitud contenga reservas
     if (!Array.isArray(reservas) || reservas.length === 0) {
-        return res.status(400).json({
-            message: 'El formato de las reservas es incorrecto o está vacío.',
-        });
+        return res.status(400).json({ message: 'El formato de las reservas es incorrecto o está vacío.' });
     }
 
-    // Insertar las reservas en la base de datos
-    const query = `INSERT INTO reservas (nombre, apellido, restriccion) VALUES ?`;
-    const values = reservas.map((reserva) => [reserva.nombre, reserva.apellido, reserva.restriccion]);
+    const query = 'INSERT INTO reservas (nombre, apellido, restriccion) VALUES ?';
+    const values = reservas.map(reserva => [reserva.nombre, reserva.apellido, reserva.restriccion || null]);
 
     db.query(query, [values], (err, result) => {
         if (err) {
             console.error('Error al guardar las reservas:', err);
-            return res.status(500).json({
-                message: 'Error al guardar las reservas en la base de datos.',
-                error: err
-            });
+            return res.status(500).json({ message: 'Error al guardar las reservas.', error: err });
         }
 
-        console.log('Reservas guardadas:', result);
-        res.status(200).json({
-            message: 'Reservas recibidas y guardadas correctamente.',
-            totalReservas: reservas.length,
-        });
+        res.status(201).json({ message: 'Reservas guardadas correctamente.', totalReservas: reservas.length });
     });
 });
 
+// Endpoint para guardar canciones
 app.post('/canciones', (req, res) => {
     const { cancion } = req.body;
 
     if (!cancion || typeof cancion !== 'string') {
-        return res.status(400).json({
-            message: 'Se intentó agregar una canción vacía.',
-        });
+        return res.status(400).json({ message: 'Se intentó agregar una canción vacía.' });
     }
 
-    const query = `INSERT INTO canciones (cancion) VALUES (?)`;
+    const query = 'INSERT INTO canciones (cancion) VALUES (?)';
+
+    db.query(query, [cancion], (err, result) => {
+        if (err) {
+            console.error('Error al guardar la canción:', err);
+            return res.status(500).json({ message: 'Error al guardar la canción.', error: err });
+        }
+
+        res.status(201).json({ message: 'Canción guardada correctamente.' });
+    });
+});
+
+// Endpoint para obtener la lista de reservas con paginación
+app.get('/reservas', (req, res) => {
+    const { page = 1, limit = 20 } = req.query; // Parámetros de paginación con valores por defecto
+
+    const offset = (page - 1) * limit; // Calcular el offset para la consulta
+
+    const query = 'SELECT * FROM reservas LIMIT ? OFFSET ?';
+    const totalQuery = 'SELECT COUNT(*) as total FROM reservas'; // Para obtener el total de registros
 
     db.getConnection((err, connection) => {
         if (err) {
@@ -79,86 +86,53 @@ app.post('/canciones', (req, res) => {
             });
         }
 
-        connection.query(query, [cancion], (err, result) => {
-            connection.release(); // Libera la conexión al pool
-
-            if (err) {
-                console.error('Error al guardar la canción:', err);
+        // Ejecutar ambas consultas en paralelo
+        connection.query(totalQuery, (totalErr, totalResult) => {
+            if (totalErr) {
+                connection.release();
+                console.error('Error al obtener el total de reservas:', totalErr);
                 return res.status(500).json({
-                    message: 'Error al guardar la canción en la base de datos.',
-                    error: err
+                    message: 'Error al obtener el total de reservas.',
+                    error: totalErr
                 });
             }
 
-            console.log('Canción guardada:', result);
-            res.status(200).json({
-                message: 'Canción recibida y guardada correctamente.',
+            const total = totalResult[0].total;
+
+            connection.query(query, [parseInt(limit), parseInt(offset)], (err, results) => {
+                connection.release();
+
+                if (err) {
+                    console.error('Error al obtener las reservas:', err);
+                    return res.status(500).json({
+                        message: 'Error al obtener las reservas.',
+                        error: err
+                    });
+                }
+
+                res.status(200).json({
+                    message: 'Reservas obtenidas correctamente.',
+                    reservas: results,
+                    total,
+                    page: parseInt(page),
+                    totalPages: Math.ceil(total / limit),
+                });
             });
         });
     });
 });
 
-// Endpoint para obtener la lista de canciones
+// Endpoint para obtener canciones
 app.get('/canciones', (req, res) => {
     const query = 'SELECT * FROM canciones';
 
-    db.getConnection((err, connection) => {
+    db.query(query, (err, results) => {
         if (err) {
-            console.error('Error al obtener la conexión:', err);
-            return res.status(500).json({
-                message: 'Error al conectar con la base de datos.',
-                error: err
-            });
+            console.error('Error al obtener las canciones:', err);
+            return res.status(500).json({ message: 'Error al obtener las canciones.', error: err });
         }
 
-        connection.query(query, (err, results) => {
-            connection.release(); // Libera la conexión al pool
-
-            if (err) {
-                console.error('Error al obtener las canciones:', err);
-                return res.status(500).json({
-                    message: 'Error al obtener las canciones.',
-                    error: err
-                });
-            }
-
-            res.status(200).json({
-                message: 'Canciones obtenidas correctamente.',
-                canciones: results,
-            });
-        });
-    });
-});
-
-// Endpoint para obtener la lista de reservas
-app.get('/reservas', (req, res) => {
-    const query = 'SELECT * FROM reservas';
-
-    db.getConnection((err, connection) => {
-        if (err) {
-            console.error('Error al obtener la conexión:', err);
-            return res.status(500).json({
-                message: 'Error al conectar con la base de datos.',
-                error: err
-            });
-        }
-
-        connection.query(query, (err, results) => {
-            connection.release(); // Libera la conexión al pool
-
-            if (err) {
-                console.error('Error al obtener las reservas:', err);
-                return res.status(500).json({
-                    message: 'Error al obtener las reservas.',
-                    error: err
-                });
-            }
-
-            res.status(200).json({
-                message: 'Reservas obtenidas correctamente.',
-                reservas: results,
-            });
-        });
+        res.status(200).json({ message: 'Canciones obtenidas correctamente.', canciones: results });
     });
 });
 
