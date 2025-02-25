@@ -9,7 +9,7 @@ const DividedSection = ({image, titulo, text, enlace}) =>{
             <div className="ContenedorTexto">
                 <h1 className="Titulo">{titulo}</h1>
                 <p className="Contenido">{text}</p>
-                <a className="Enlace" href={enlace}>{"Reservas: "+enlace}</a>
+                <a className="Enlace" href={enlace}>{"Reservar"}</a>
             </div>
             
 

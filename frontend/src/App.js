@@ -236,7 +236,7 @@ function Home() {
         </div> */}
       </div>
 
-      <div className='DatosHome' id="sugerencia-canciones" style={{backgroundColor: '#2e266d', paddingBottom: '4vh', marginTop: '7vh'}}>
+      <div className='DatosHome' id="sugerencia-canciones" style={{backgroundColor: '#2e266d', paddingBottom: '4vh', paddingTop: '4vh',  marginTop: '7vh'}}>
         <h1 style={{ marginTop: '20px', color: '#989fa1' }}>Queremos que sea una noche super divertida</h1>
         <h2 style={{ marginTop: '5px', color: '#989fa1' }}>Dinos que canción no puede faltar</h2>
         <InputText
@@ -325,7 +325,7 @@ function Home() {
 
 
 
-      <div className='DatosHome' id="regalos" style={{backgroundColor: '#2e266d', paddingBottom: '20px', marginBottom: '20px'}}>
+      <div className='DatosHome' id="regalos" style={{backgroundColor: '#2e266d', paddingBottom: '20px', paddingTop: '20px', marginBottom: '20px'}}>
         <h1 style={{ color: '#989fa1' }}>Regalo</h1>
         <h2 style={{ color: '#989fa1' }}>Brou 110024237-00001 $</h2>
         <h2 style={{ color: '#989fa1' }}>110024237-00002 USD</h2>

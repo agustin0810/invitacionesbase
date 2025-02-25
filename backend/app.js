@@ -21,14 +21,20 @@ db.on('error', (err) => {
     console.error('Error en la base de datos:', err);
 });
 
+const corsOptions = {
+  origin: 'https://teinvito.im', // Cambia esto según el puerto donde corre tu frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+};
+
 // Middleware para habilitar CORS
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Middleware para parsear JSON
 app.use(express.json());
 
 // Endpoint para recibir y guardar reservas
-app.post('/reservas', (req, res) => {
+app.post('/api/reservas', (req, res) => {
     const reservas = req.body;
 
     if (!Array.isArray(reservas) || reservas.length === 0) {
@@ -49,7 +55,7 @@ app.post('/reservas', (req, res) => {
 });
 
 // Endpoint para guardar canciones
-app.post('/canciones', (req, res) => {
+app.post('/api/canciones', (req, res) => {
     const { cancion } = req.body;
 
     if (!cancion || typeof cancion !== 'string') {
@@ -69,7 +75,7 @@ app.post('/canciones', (req, res) => {
 });
 
 // Endpoint para obtener la lista de reservas con paginación
-app.get('/reservas', (req, res) => {
+app.get('/api/reservas', (req, res) => {
     const { page = 1, limit = 20 } = req.query; // Parámetros de paginación con valores por defecto
 
     const offset = (page - 1) * limit; // Calcular el offset para la consulta
@@ -123,7 +129,7 @@ app.get('/reservas', (req, res) => {
 });
 
 // Endpoint para obtener canciones
-app.get('/canciones', (req, res) => {
+app.get('/api/canciones', (req, res) => {
     const query = 'SELECT * FROM canciones';
 
     db.query(query, (err, results) => {
@@ -137,17 +143,13 @@ app.get('/canciones', (req, res) => {
 });
 
 // Configuración HTTPS
-const privateKey = fs.readFileSync('private.pem', 'utf8');
-const certificate = fs.readFileSync('cert.pem', 'utf8');
 
-const credentials = { key: privateKey, cert: certificate };
-
+// Configuración del SSL
+const options = {
+  key: fs.readFileSync('./localhost.key'),  // Ruta a la clave privada
+  cert: fs.readFileSync('./localhost.crt')  // Ruta al certificado
+};
 // Iniciar el servidor HTTPS
-https.createServer(credentials, app).listen(PORT, () => {
+https.createServer(options, app).listen(PORT, () => {
     console.log(`Servidor HTTPS ejecutándose en https://localhost:${PORT}`);
 });
-
-// INICIAR HTTP (DEV)
-// app.listen(PORT, () => {
-//     console.log(`Servidor HTTP ejecutándose en http://localhost:${PORT}`);
-// });
